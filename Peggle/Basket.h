@@ -8,7 +8,7 @@ class Basket :
 {
 public:
 	Basket();
-	Basket(int X,int Y);
+	Basket(int x,int y);
 	~Basket();
 
 	void Start();
@@ -16,6 +16,6 @@ public:
 	void Stop();
 
 private:
-	int speed, posX, posY;
+	float speed;
 };
 

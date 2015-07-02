@@ -10,8 +10,7 @@ Peggle::Peggle()
 	Textures->LoadTexture(Texture::CANON, "canon.jpg");
 
 	//canon = new Canon();
-
-	basket = new Basket(10,-100);
+	basket = new Basket(33, 33);
 }
 
 Peggle::~Peggle()
@@ -25,11 +24,6 @@ void Peggle::Start()
 }
 
 void Peggle::Update()
-{
-	
-}
-
-void Peggle::Draw()
 {
 	
 }
