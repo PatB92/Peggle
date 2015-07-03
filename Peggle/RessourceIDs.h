@@ -7,7 +7,8 @@ namespace Texture
 	{
 		BALL,
 		BASKET,
-		CANON
+		CANON,
+		BUMPER
 	};
 }
 

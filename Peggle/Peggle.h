@@ -5,6 +5,7 @@
 #include "Basket.h"
 #include "Canon.h"
 #include "Ball.h"
+#include "Bumper.h"
 
 class Peggle :
 	public Component
@@ -13,6 +14,10 @@ private:
 	Basket* basket;
 	Canon* canon;
 	Ball* ball;
+	Bumper* bumper[28];
+
+	float startX, startY;
+
 
 public:
 	Peggle();
