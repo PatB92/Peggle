@@ -1,38 +1,34 @@
 #include "Ball.h"
 
-
 Ball::Ball()
-	:Sprite(Texture::BALL)
+	:Sprite(Texture::ID::BALL)
 	, angle(0)
+	, speed(1000.0f)
 {
 }
 
-Ball::Ball(float x, float y,D3DXVECTOR3 pivot, float angle)
-	: angle(angle)
+Ball::Ball(float x, float y, float angle)
+	: Sprite(Texture::ID::BALL)
+	, angle(angle)
+	, speed(1000.0f)
 {
 	SetPosition(x, y);
-	SetPivot(pivot);
+	SetPivot(D3DXVECTOR3(texInfos->infos.Width / 2, texInfos->infos.Height / 2, 0.f));
 }
-
 
 Ball::~Ball()
 {
 }
 
-
-void Ball::Start()
-{
-
-}
-
 void Ball::Update()
 {
-	SetRotationDeg(0.f,0.f,angle);
-	SetPosition(GetPosition().x, GetPosition().y - 100.0f * gTimer->GetDeltaTime());
+	float dt = gTimer->GetDeltaTime();
 
-}
+	D3DXVECTOR3 currentPos = GetPosition();
+	D3DXVECTOR3 dir = D3DXVECTOR3(cos(angle), sin(angle), 0.f);
 
-void Ball::Stop()
-{
+	currentPos.x += dir.x * speed * dt;
+	currentPos.y += dir.y * speed * dt;
 
+	SetPosition(currentPos.x, currentPos.y);
 }

@@ -6,100 +6,63 @@ Canon::Canon()
 	, pivot(0.f,0.f,0.f)
 	, rotationSpeed(0.f)
 	, angle(0.f)
-	, leftPressed(false)
-	, rightPressed(false)
-	, canonHeadPos(0.f,0.f)
 {
 }
 
 Canon::Canon(float x, float y)
 	: Sprite(Texture::CANON)
-	, pivot((GetTextureInfos()->infos.Width), (GetTextureInfos()->infos.Height), 1.f)
+	, pivot(0.f, (GetTextureInfos()->infos.Height/2), 0.f)
 	, rotationSpeed(0.03f)
 	, angle(0.f)
-	, leftPressed(false)
-	, rightPressed(false)
-	, canonHeadPos((GetTextureInfos()->infos.Width), 0.f)
 {
 	SetPosition(x, y);
 	SetPivot(pivot);
-}
 
+	
+	//currentBall = new Ball(GetPosition().x * offset.x, GetPosition().y * offset.y, angle);
+	//currentBall->SetVisible(false);
+}
 
 Canon::~Canon()
 {
-
-}
-
-
-void Canon::Start()
-{
-
+	delete currentBall;
 }
 
 void Canon::Update()
 {
-	checkInput();
+	float dt = gTimer->GetDeltaTime();
 
-	if (leftPressed)
+	if (gDInput->keyDown(DIK_LEFT))
 	{
-		rotationSpeed = -0.03f;
-		if (angle >= -70.f)
+		rotationSpeed = -300.f;
+		if (angle >= -180.f)
 		{
-			angle += rotationSpeed;
+			angle += rotationSpeed * dt;
 			SetRotationDeg(0.f, 0.f, angle);
 		}
 	}
 
-	if (rightPressed)
+	if (gDInput->keyDown(DIK_RIGHT))
 	{
-		rotationSpeed = 0.03f;
-		if (angle <= 70.f)
+		rotationSpeed = 300.f;
+		if (angle < 0.f)
 		{
-			angle += rotationSpeed;
+			angle += rotationSpeed * dt;
+			SetRotationDeg(0.f, 0.f, angle);
 		}
 	}
-	SetRotationDeg(0.f, 0.f, angle);
-}
-
-void Canon::Stop()
-{
-
-}
-
-void Canon::checkInput()
-{
-	if (gDInput->keyPressed(DIK_LEFT))
+	
+	if (gDInput->keyPressed(DIK_SPACE))
 	{
-		leftPressed = true;
-	}
-	else if (gDInput->keyReleased(DIK_LEFT))
-	{
-		leftPressed = false;
+		//if (!currentBall->IsVisible())
+		{
+			float a = angle * D3DX_PI/180;
+			offset = D3DXVECTOR3(cos(a), sin(a), 0.f) * 50.f;
+			currentBall = new Ball(GetPosition().x + offset.x, GetPosition().y + offset.y, a);
+			//currentBall->SetPosition(offset.x, offset.y);
+			//currentBall->SetVisible(true);
+		}
 	}
 
-	if (gDInput->keyPressed(DIK_RIGHT))
-	{
-		rightPressed = true;
-	}
-	else if (gDInput->keyReleased(DIK_RIGHT))
-	{
-		rightPressed = false;
-	}
-
-}
-
-D3DXVECTOR3 Canon::Getpivot()
-{
-	return pivot;
-}
-
-float Canon::Getangle()
-{
-	return angle;
-}
-
-D3DXVECTOR2 Canon::GetcanonHeadPos()
-{
-	return canonHeadPos;
+	std::cout << angle << std::endl;
 }

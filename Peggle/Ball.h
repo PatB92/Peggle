@@ -8,15 +8,13 @@ class Ball :
 {
 public:
 	Ball();
-	Ball(float x, float y,D3DXVECTOR3 pivot,float angle);
+	Ball(float x, float y, float angle);
 	~Ball();
 
-	void Start();
 	void Update();
-	void Stop();
 
 private:
 	float angle;
-	
+	float speed;
 };
 

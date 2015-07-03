@@ -24,7 +24,6 @@ Basket::~Basket()
 
 void Basket::Start()
 {
-
 }
 
 void Basket::Update()
@@ -32,6 +31,7 @@ void Basket::Update()
 	float dt = gTimer->GetDeltaTime();
 	D3DXVECTOR3 currentPos = GetPosition();
 
+	// Bouncer sur les bord
 	if (this->GetPosition().x >= 340.0f || this->GetPosition().x <= -340.0f)
 	{
 		 speed *= -1;
