@@ -3,21 +3,20 @@
 #include "Sprite.h"
 #include "RessourceIDs.h"
 
-class Basket :
+class Ball :
 	public Sprite
 {
 public:
-	Basket();
-	Basket(int x,int y);
-	~Basket();
+	Ball();
+	Ball(float x, float y,D3DXVECTOR3 pivot,float angle);
+	~Ball();
 
 	void Start();
 	void Update();
 	void Stop();
 
 private:
-	float speed,angle;
-	D3DXVECTOR3 pivot;
-
+	float angle;
+	
 };
 

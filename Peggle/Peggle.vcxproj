@@ -86,6 +86,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Basket.cpp" />
     <ClCompile Include="Canon.cpp" />
     <ClCompile Include="Peggle.cpp" />
@@ -100,6 +101,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
     <ClInclude Include="Basket.h" />
     <ClInclude Include="Canon.h" />
     <ClInclude Include="Peggle.h" />

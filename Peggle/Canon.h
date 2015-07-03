@@ -9,6 +9,7 @@ class Canon :
 {
 public:
 	Canon();
+	Canon(float x , float y);
 	~Canon();
 
 
@@ -16,6 +17,16 @@ public:
 	void Update();
 	void Stop();
 
+	void checkInput();
+	D3DXVECTOR3 Getpivot();
+	D3DXVECTOR2 GetcanonHeadPos();
+	float Getangle();
 
+
+private:
+	D3DXVECTOR3 pivot;
+	float rotationSpeed, angle;
+	bool leftPressed, rightPressed;
+	D3DXVECTOR2 canonHeadPos;
 };
 

@@ -2,14 +2,20 @@
 
 Basket::Basket()
 	: Sprite(Texture::BASKET)
-	, speed (1000.f)
+	, speed(0.f)
+	, angle(0.f)
+	, pivot(0,0,0)
 {
 }
 
 Basket::Basket(int x, int y)
 	: Sprite(Texture::BASKET, x, y)
-	, speed(1000.f)
+	, speed(250.f)
+	, angle(180.f)
+	, pivot((GetTextureInfos()->infos.Width / 2), (GetTextureInfos()->infos.Height / 2), 1.f)
 {
+	SetPivot(pivot);
+	SetRotationDeg(0.f, 0.f, angle);
 }
 
 Basket::~Basket()
@@ -26,7 +32,7 @@ void Basket::Update()
 	float dt = gTimer->GetDeltaTime();
 	D3DXVECTOR3 currentPos = GetPosition();
 
-	if (this->GetPosition().x >= 300.0f || this->GetPosition().x <= -450.0f)
+	if (this->GetPosition().x >= 340.0f || this->GetPosition().x <= -340.0f)
 	{
 		 speed *= -1;
 	}
